@@ -1,9 +1,12 @@
-#include <QCoreApplication>
+// #include <QCoreApplication>
 
+#include "server-https/database/database.hpp"
 #include "server-https/server-https.h"
 
 int main(int argc, char *argv[]) {
-  QCoreApplication a(argc, argv);
+  // QCoreApplication a(argc, argv);
   // ServerHTTPS serverHTTPS(443);
-  return a.exec();
+  database::Database db;
+  // return a.exec();
+  return 0;
 }

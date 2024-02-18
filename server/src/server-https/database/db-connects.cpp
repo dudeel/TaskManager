@@ -1,4 +1,4 @@
-#include "db-connects.h"
+#include "db-connects.hpp"
 
 namespace database {
 DBConnects::DBConnects() {}
