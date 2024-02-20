@@ -10,7 +10,7 @@
 namespace database {
 class Database final {
 public:
-  Database();
+  Database() = default;
   ~Database() = default;
 
   Database(const Database &other) = delete;
@@ -19,14 +19,9 @@ public:
   Database(Database &&other) noexcept = default;
   Database &operator=(Database &&other) noexcept = default;
 
-public:
-  auto connectToDB() -> bool;
-  inline auto isConnected() -> bool;
-
 private:
-  bool _isConnected;
-  DBConnects _dbConnects;
-  DBTable _dbTable;
-  DBUserData _dbUserData;
+  std::unique_ptr<DBConnects> _dbConnects;
+  std::unique_ptr<DBTable> _dbTable;
+  std::unique_ptr<DBUserData> _dbUserData;
 };
 } // namespace database

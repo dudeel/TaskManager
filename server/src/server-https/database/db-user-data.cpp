@@ -1,43 +1,35 @@
 #include "db-user-data.hpp"
 
 namespace database {
-DBUserData::DBUserData()
-    : _hostName{"127.0.0.1"}, _port{5432}, _databaseName{"taskManager"},
-      _userName{"host"}, _password{"hostPassword"} {}
+DBUserData::DBUserData(const QString &hostAddress, int port,
+                       const QString &databaseName, const QString &userName,
+                       const QString &password)
+    : _hostAddress{hostAddress}, _port{port}, _databaseName{databaseName},
+      _userName{userName}, _password{password} {}
 
-void DBUserData::setHostName(const std::string &&hostName) {
-  _hostName = hostName;
+void DBUserData::setHostAddress(const QString &hostAddress) {
+  _hostAddress = hostAddress;
 }
 
-void DBUserData::setPort(const int &&port) { _port = port; }
+void DBUserData::setPort(const int &port) { _port = port; }
 
-void DBUserData::setDatabaseName(const std::string &&databaseName) {
+void DBUserData::setDatabaseName(const QString &databaseName) {
   _databaseName = databaseName;
 }
 
-void DBUserData::setUserName(const std::string &&userName) {
-  _userName = userName;
+void DBUserData::setUserName(const QString &userName) { _userName = userName; }
+
+void DBUserData::setPassword(const QString &password) { _password = password; }
+
+const QString &DBUserData::hostAddress() const noexcept { return _hostAddress; }
+
+const int DBUserData::port() const noexcept { return _port; }
+
+const QString &DBUserData::databaseName() const noexcept {
+  return _databaseName;
 }
 
-void DBUserData::setPassword(const std::string &&password) {
-  _password = password;
-}
+const QString &DBUserData::userName() const noexcept { return _userName; }
 
-auto DBUserData::hostName() const noexcept -> const std::string && {
-  return std::move(_hostName);
-}
-
-auto DBUserData::port() const noexcept -> const int { return _port; }
-
-auto DBUserData::databaseName() const noexcept -> const std::string && {
-  return std::move(_databaseName);
-}
-
-auto DBUserData::userName() const noexcept -> const std::string && {
-  return std::move(_userName);
-}
-
-auto DBUserData::password() const noexcept -> const std::string && {
-  return std::move(_password);
-}
+const QString &DBUserData::password() const noexcept { return _password; }
 } // namespace database

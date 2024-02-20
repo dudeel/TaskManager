@@ -1,11 +1,22 @@
 #pragma once
 
-#include <iostream>
+#include <QString>
 
 namespace database {
-class DBUserData {
+class DBUserData final {
 public:
-  DBUserData();
+  /**
+   * @brief Конструктор класса DBUserData.
+   * @param hostAddress Адрес хоста.
+   * @param port Порт хоста.
+   * @param databaseName Имя базы данных.
+   * @param userName Имя пользователя.
+   * @param password Пароль пользователя.
+   */
+  DBUserData(const QString &hostAddress = "127.0.0.1", int port = 5432,
+             const QString &databaseName = "taskManager",
+             const QString &userName = "host",
+             const QString &password = "hostPassword");
   ~DBUserData() = default;
 
   DBUserData(const DBUserData &other) = delete;
@@ -15,23 +26,71 @@ public:
   DBUserData &operator=(DBUserData &&other) noexcept = default;
 
 public:
-  void setHostName(const std::string &&hostName);
-  void setPort(const int &&port);
-  void setDatabaseName(const std::string &&databaseName);
-  void setUserName(const std::string &&userName);
-  void setPassword(const std::string &&password);
+  /**
+   * @brief Устанавливает адрес хоста.
+   * @param hostAddress Новый адрес хоста.
+   */
+  void setHostAddress(const QString &hostAddress);
 
-  auto hostName() const noexcept -> const std::string &&;
-  auto port() const noexcept -> const int;
-  auto databaseName() const noexcept -> const std::string &&;
-  auto userName() const noexcept -> const std::string &&;
-  auto password() const noexcept -> const std::string &&;
+  /**
+   * @brief Устанавливает порт хоста.
+   * @param port Новый порт хоста.
+   */
+  void setPort(const int &port);
+
+  /**
+   * @brief Устанавливает имя базы данных.
+   * @param databaseName Новое имя базы данных.
+   */
+  void setDatabaseName(const QString &databaseName);
+
+  /**
+   * @brief Устанавливает имя пользователя.
+   * @param hostAddress Новое имя пользователя.
+   */
+  void setUserName(const QString &userName);
+
+  /**
+   * @brief Устанавливает пароль пользователя.
+   * @param hostAddress Новый пароль пользователя.
+   */
+  void setPassword(const QString &password);
+
+  /**
+   * @brief Возвращает адрес хоста.
+   * @return Ссылка на строку с адресом хоста.
+   */
+  const QString &hostAddress() const noexcept;
+
+  /**
+   * @brief Возвращает порт хоста.
+   * @return Порт хоста.
+   */
+  const int port() const noexcept;
+
+  /**
+   * @brief Возвращает имя базы данных.
+   * @return Ссылка на строку с именем базы данных.
+   */
+  const QString &databaseName() const noexcept;
+
+  /**
+   * @brief Возвращает имя пользователя.
+   * @return Ссылка на строку с именем пользователя.
+   */
+  const QString &userName() const noexcept;
+
+  /**
+   * @brief Возвращает пароль пользователя.
+   * @return Ссылка на строку с паролем пользователя.
+   */
+  const QString &password() const noexcept;
 
 private:
-  std::string _hostName;
+  QString _hostAddress;
   int _port;
-  std::string _databaseName;
-  std::string _userName;
-  std::string _password;
+  QString _databaseName;
+  QString _userName;
+  QString _password;
 };
 } // namespace database
