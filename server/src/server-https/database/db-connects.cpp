@@ -1,23 +1,22 @@
-#include "db-connects.hpp"
-
-#include <QSqlDatabase>
-#include <QtSql>
+#include "db-connects.h"
 
 namespace database {
 DBConnects::DBConnects(const std::shared_ptr<DBUserData> dbUserData)
-    : _dbUserData{dbUserData}, _isConnection{}, _connectionError{} {}
+    : _dbUserData{dbUserData}, _db{QSqlDatabase::addDatabase("QPSQL")},
+      _isConnection{}, _connectionError{} {}
+
+DBConnects::~DBConnects() { closeConnection(); }
 
 const bool DBConnects::createConnection() {
-  QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+  _db.setHostName(_dbUserData.get()->hostAddress());
+  _db.setPort(_dbUserData.get()->port());
+  _db.setDatabaseName(_dbUserData.get()->databaseName());
+  _db.setUserName(_dbUserData.get()->userName());
+  _db.setPassword(_dbUserData.get()->password());
 
-  db.setHostName(_dbUserData.get()->hostAddress());
-  db.setPort(_dbUserData.get()->port());
-  db.setDatabaseName(_dbUserData.get()->databaseName());
-  db.setUserName(_dbUserData.get()->userName());
-  db.setPassword(_dbUserData.get()->password());
-
-  if (!db.open()) {
-    qFatal() << "db is not connected: " << db.lastError().text();
+  if (!_db.open()) {
+    _connectionError = _db.lastError().text();
+    qFatal() << "db is not connected: " << _connectionError;
     return _isConnection = false;
   }
 
@@ -26,10 +25,10 @@ const bool DBConnects::createConnection() {
 
 const bool DBConnects::isConnection() const { return _isConnection; }
 
-const std::string &DBConnects::isConnectionError() const {
+const QString &DBConnects::isConnectionError() const {
   return _connectionError;
 }
 
-void DBConnects::closeConnection() {}
+void DBConnects::closeConnection() { _db.close(); }
 
 } // namespace database

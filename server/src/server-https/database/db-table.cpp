@@ -1,4 +1,4 @@
-#include "db-table.hpp"
+#include "db-table.h"
 
 namespace database {
 DBTable::DBTable() {}

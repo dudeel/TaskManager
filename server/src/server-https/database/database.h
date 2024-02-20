@@ -3,9 +3,9 @@
 #include <iostream>
 #include <memory>
 
-#include "db-connects.hpp"
-#include "db-table.hpp"
-#include "db-user-data.hpp"
+#include "db-connects.h"
+#include "db-table.h"
+#include "db-user-data.h"
 
 namespace database {
 class Database final {

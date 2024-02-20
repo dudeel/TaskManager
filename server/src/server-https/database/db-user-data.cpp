@@ -1,4 +1,4 @@
-#include "db-user-data.hpp"
+#include "db-user-data.h"
 
 namespace database {
 DBUserData::DBUserData(const QString &hostAddress, int port,

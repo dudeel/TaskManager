@@ -1,6 +1,9 @@
 #pragma once
 
-#include "db-user-data.hpp"
+#include <QSqlDatabase>
+#include <QtSql>
+
+#include "db-user-data.h"
 #include <memory>
 
 namespace database {
@@ -12,7 +15,7 @@ public:
    * в котором данные для подключении к базе данных.
    */
   DBConnects(const std::shared_ptr<DBUserData> dbUserData);
-  ~DBConnects() = default;
+  ~DBConnects();
 
   DBConnects(const DBConnects &other) = delete;
   DBConnects &operator=(const DBConnects &other) = delete;
@@ -37,7 +40,7 @@ public:
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке соединения.
    */
-  const std::string &isConnectionError() const;
+  const QString &isConnectionError() const;
 
   /**
    * @brief Закрывает соединение с базой данных.
@@ -45,8 +48,9 @@ public:
   void closeConnection();
 
 private:
+  QSqlDatabase _db;
   std::shared_ptr<DBUserData> _dbUserData;
   bool _isConnection;
-  std::string _connectionError;
+  QString _connectionError;
 };
 } // namespace database
