@@ -31,7 +31,7 @@ public:
   const bool createConnection();
 
   /**
-   * @brief Проверяет текущее состояние соединения с базой данных.
+   * @brief Проверяет было ли установлено соединения с базой данных.
    * @return true, если соединение активно, иначе false.
    */
   const bool isConnection() const;
@@ -40,7 +40,7 @@ public:
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке соединения.
    */
-  const QString &isConnectionError() const;
+  const QString &connectionError() const;
 
   /**
    * @brief Закрывает соединение с базой данных.

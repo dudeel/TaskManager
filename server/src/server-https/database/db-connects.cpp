@@ -25,9 +25,7 @@ const bool DBConnects::createConnection() {
 
 const bool DBConnects::isConnection() const { return _isConnection; }
 
-const QString &DBConnects::isConnectionError() const {
-  return _connectionError;
-}
+const QString &DBConnects::connectionError() const { return _connectionError; }
 
 void DBConnects::closeConnection() { _db.close(); }
 
