@@ -7,7 +7,7 @@ DBConnects::DBConnects(const std::shared_ptr<DBUserData> dbUserData)
 
 DBConnects::~DBConnects() { closeConnection(); }
 
-const bool DBConnects::createConnection() {
+const bool DBConnects::create() {
   _db.setHostName(_dbUserData.get()->hostAddress());
   _db.setPort(_dbUserData.get()->port());
   _db.setDatabaseName(_dbUserData.get()->databaseName());

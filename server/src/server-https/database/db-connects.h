@@ -29,7 +29,7 @@ public:
    * @brief Устанавливает соединение с базой данных.
    * @return true, если соединение установлено успешно, иначе false.
    */
-  const bool createConnection();
+  const bool create();
 
   /**
    * @brief Проверяет было ли установлено соединения с базой данных.
