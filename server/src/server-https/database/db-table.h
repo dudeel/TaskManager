@@ -5,9 +5,10 @@
 #include <memory>
 
 #include "db-connects.h"
+#include "db-interface.h"
 
 namespace database {
-class DBTable final {
+class DBTable final : public DBInterface {
 public:
   /**
    * @brief Конструктор класса DBTable.
@@ -28,13 +29,13 @@ public:
    * @brief Создает таблицу в базе данных.
    * @return true, если таблица создана успешно, иначе false.
    */
-  const bool create();
+  const bool create() override;
 
   /**
    * @brief Проверяет существует ли таблица в базе данных.
    * @return true, если таблица существует, иначе false.
    */
-  inline const bool isHave() const noexcept;
+  inline const bool isHave() const noexcept override;
 
   /**
    * @brief Создает запись в таблице.
@@ -60,7 +61,12 @@ public:
    * @return Ссылка на строку с сообщением об ошибке взаимодействия,
    * с таблицей.
    */
-  inline const QString &lastError() const noexcept;
+  inline const QString &lastError() const noexcept override;
+
+  /**
+   * @brief Удаляет таблицу в базе данных.
+   */
+  const bool drop() override;
 
 private:
   std::unique_ptr<DBConnects> _dbConnects;

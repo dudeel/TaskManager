@@ -3,9 +3,9 @@
 namespace database {
 DBConnects::DBConnects(const std::shared_ptr<DBUserData> dbUserData)
     : _dbUserData{dbUserData}, _db{QSqlDatabase::addDatabase("QPSQL")},
-      _isConnection{}, _lastError{} {}
+      _isHave{}, _lastError{} {}
 
-DBConnects::~DBConnects() { closeConnection(); }
+DBConnects::~DBConnects() { drop(); }
 
 const bool DBConnects::create() {
   _db.setHostName(_dbUserData.get()->hostAddress());
@@ -17,16 +17,20 @@ const bool DBConnects::create() {
   if (!_db.open()) {
     _lastError = _db.lastError().text();
     qFatal() << "db is not connected: " << _lastError;
-    return _isConnection = false;
+    return _isHave = false;
   }
 
-  return _isConnection = true;
+  return _isHave = true;
 }
 
-const bool DBConnects::isConnection() const noexcept { return _isConnection; }
+const bool DBConnects::isHave() const noexcept { return _isHave; }
 
 const QString &DBConnects::lastError() const noexcept { return _lastError; }
 
-void DBConnects::closeConnection() { _db.close(); }
+const bool DBConnects::drop() {
+  _db.close();
+  _isHave = false;
+  return true;
+}
 
 } // namespace database

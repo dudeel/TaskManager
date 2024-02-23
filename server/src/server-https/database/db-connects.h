@@ -5,10 +5,11 @@
 
 #include <memory>
 
+#include "db-interface.h"
 #include "db-user-data.h"
 
 namespace database {
-class DBConnects {
+class DBConnects final : public DBInterface {
 public:
   /**
    * @brief Конструктор класса DBConnects.
@@ -29,29 +30,30 @@ public:
    * @brief Устанавливает соединение с базой данных.
    * @return true, если соединение установлено успешно, иначе false.
    */
-  const bool create();
+  const bool create() override;
 
   /**
    * @brief Проверяет было ли установлено соединения с базой данных.
    * @return true, если соединение активно, иначе false.
    */
-  inline const bool isConnection() const noexcept;
+  inline const bool isHave() const noexcept override;
 
   /**
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке соединения.
    */
-  inline const QString &lastError() const noexcept;
+  inline const QString &lastError() const noexcept override;
 
   /**
    * @brief Закрывает соединение с базой данных.
    */
-  void closeConnection();
+  const bool drop() override;
 
 private:
   QSqlDatabase _db;
   std::shared_ptr<DBUserData> _dbUserData;
-  bool _isConnection;
+
+  bool _isHave;
   QString _lastError;
 };
 } // namespace database
