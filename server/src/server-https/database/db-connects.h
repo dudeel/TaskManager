@@ -3,8 +3,9 @@
 #include <QSqlDatabase>
 #include <QtSql>
 
-#include "db-user-data.h"
 #include <memory>
+
+#include "db-user-data.h"
 
 namespace database {
 class DBConnects {
@@ -20,8 +21,8 @@ public:
   DBConnects(const DBConnects &other) = delete;
   DBConnects &operator=(const DBConnects &other) = delete;
 
-  DBConnects(DBConnects &&other) noexcept = default;
-  DBConnects &operator=(DBConnects &&other) noexcept = default;
+  DBConnects(DBConnects &&other) noexcept = delete;
+  DBConnects &operator=(DBConnects &&other) noexcept = delete;
 
 public:
   /**
@@ -34,13 +35,13 @@ public:
    * @brief Проверяет было ли установлено соединения с базой данных.
    * @return true, если соединение активно, иначе false.
    */
-  const bool isConnection() const;
+  inline const bool isConnection() const noexcept;
 
   /**
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке соединения.
    */
-  const QString &connectionError() const;
+  inline const QString &lastError() const noexcept;
 
   /**
    * @brief Закрывает соединение с базой данных.
@@ -51,6 +52,6 @@ private:
   QSqlDatabase _db;
   std::shared_ptr<DBUserData> _dbUserData;
   bool _isConnection;
-  QString _connectionError;
+  QString _lastError;
 };
 } // namespace database

@@ -13,7 +13,7 @@ public:
    * @param userName Имя пользователя.
    * @param password Пароль пользователя.
    */
-  DBUserData(const QString &hostAddress = "127.0.0.1", int port = 5432,
+  DBUserData(const QString &hostAddress = "127.0.0.1", const int port = 5432,
              const QString &databaseName = "taskManager",
              const QString &userName = "host",
              const QString &password = "hostPassword");
@@ -22,39 +22,39 @@ public:
   DBUserData(const DBUserData &other) = delete;
   DBUserData &operator=(const DBUserData &other) = delete;
 
-  DBUserData(DBUserData &&other) noexcept = default;
-  DBUserData &operator=(DBUserData &&other) noexcept = default;
+  DBUserData(DBUserData &&other) noexcept = delete;
+  DBUserData &operator=(DBUserData &&other) noexcept = delete;
 
 public:
   /**
    * @brief Устанавливает адрес хоста.
    * @param hostAddress Новый адрес хоста.
    */
-  void setHostAddress(const QString &hostAddress);
+  inline void setHostAddress(const QString &hostAddress);
 
   /**
    * @brief Устанавливает порт хоста.
    * @param port Новый порт хоста.
    */
-  void setPort(const int &port);
+  inline void setPort(const int &port);
 
   /**
    * @brief Устанавливает имя базы данных.
    * @param databaseName Новое имя базы данных.
    */
-  void setDatabaseName(const QString &databaseName);
+  inline void setDatabaseName(const QString &databaseName);
 
   /**
    * @brief Устанавливает имя пользователя.
    * @param hostAddress Новое имя пользователя.
    */
-  void setUserName(const QString &userName);
+  inline void setUserName(const QString &userName);
 
   /**
    * @brief Устанавливает пароль пользователя.
    * @param hostAddress Новый пароль пользователя.
    */
-  void setPassword(const QString &password);
+  inline void setPassword(const QString &password);
 
   /**
    * @brief Возвращает адрес хоста.

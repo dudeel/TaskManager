@@ -1,7 +1,7 @@
 #include "db-user-data.h"
 
 namespace database {
-DBUserData::DBUserData(const QString &hostAddress, int port,
+DBUserData::DBUserData(const QString &hostAddress, const int port,
                        const QString &databaseName, const QString &userName,
                        const QString &password)
     : _hostAddress{hostAddress}, _port{port}, _databaseName{databaseName},

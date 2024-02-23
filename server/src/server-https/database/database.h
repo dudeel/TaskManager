@@ -10,18 +10,18 @@
 namespace database {
 class Database final {
 public:
-  Database() = default;
+  Database();
   ~Database() = default;
 
   Database(const Database &other) = delete;
   Database &operator=(const Database &other) = delete;
 
-  Database(Database &&other) noexcept = default;
-  Database &operator=(Database &&other) noexcept = default;
+  Database(Database &&other) noexcept = delete;
+  Database &operator=(Database &&other) noexcept = delete;
 
 private:
-  std::unique_ptr<DBConnects> _dbConnects;
+  std::shared_ptr<DBUserData> _dbUserData;
+  std::shared_ptr<DBConnects> _dbConnects;
   std::unique_ptr<DBTable> _dbTable;
-  std::unique_ptr<DBUserData> _dbUserData;
 };
 } // namespace database
