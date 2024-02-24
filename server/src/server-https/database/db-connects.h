@@ -36,7 +36,7 @@ public:
    * @brief Проверяет было ли установлено соединения с базой данных.
    * @return true, если соединение активно, иначе false.
    */
-  inline const bool isHave() const noexcept override;
+  const bool isHave() const noexcept override;
 
   /**
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.

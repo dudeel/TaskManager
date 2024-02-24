@@ -35,7 +35,7 @@ public:
    * @brief Проверяет существует ли таблица в базе данных.
    * @return true, если таблица существует, иначе false.
    */
-  inline const bool isHave() const noexcept override;
+  const bool isHave() const noexcept override;
 
   /**
    * @brief Создает запись в таблице.

@@ -5,6 +5,10 @@
 namespace json::structures {
 class JsonDBUserData final {
 public:
+  /**
+   * @brief Конструктор класса JsonDBUserData.
+   * @param parseData Ссылка на объект json файла.
+   */
   explicit JsonDBUserData(const QJsonObject *parseData);
   ~JsonDBUserData() = default;
 

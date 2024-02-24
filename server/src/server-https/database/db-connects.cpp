@@ -1,5 +1,7 @@
 #include "db-connects.h"
 
+#include <QDebug>
+
 namespace database {
 DBConnects::DBConnects(const std::shared_ptr<DBUserData> dbUserData)
     : _dbUserData{dbUserData}, _db{QSqlDatabase::addDatabase("QPSQL")},

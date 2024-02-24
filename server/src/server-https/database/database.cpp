@@ -10,14 +10,26 @@
 namespace database {
 Database::Database() {
   _dbUserData = std::make_shared<DBUserData>();
-
-  initializationData();
+  if (!initData()) {
+    return;
+  }
 
   _dbConnects = std::make_shared<DBConnects>(_dbUserData);
+  if (!_dbConnects.get()->create()) {
+    qCritical() << _dbConnects.get()->lastError();
+    return;
+  }
+
   _dbTable = std::make_unique<DBTable>(_dbConnects);
+  if (!_dbTable.get()->isHave()) {
+    if (!_dbTable.get()->create()) {
+      qCritical() << _dbTable.get()->lastError();
+      return;
+    }
+  }
 }
 
-void Database::initializationData() {
+bool Database::initData() {
   json::JsonParser jp("../../data/database/databaseConfig.json");
 
   if (jp.read()) {
@@ -27,10 +39,12 @@ void Database::initializationData() {
     _dbUserData.get()->setDatabaseName(data.databaseName());
     _dbUserData.get()->setUserName(data.userName());
     _dbUserData.get()->setUserPassword(data.userPassword());
-    qDebug() << _dbUserData.get()->userName();
   } else {
     qCritical() << jp.lastError();
+    return false;
   }
+
+  return true;
 }
 
 } // namespace database

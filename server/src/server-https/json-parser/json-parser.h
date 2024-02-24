@@ -29,7 +29,7 @@ public:
    * @brief Возвращает значение, был ли успешно прочитан json.
    * @return true, если json прочитан успешно, иначе false.
    */
-  inline const bool isRead() const noexcept;
+  const bool isRead() const noexcept;
 
   /**
    * @brief Возвращает сообщение об ошибке при прочтении json, если оно есть.
