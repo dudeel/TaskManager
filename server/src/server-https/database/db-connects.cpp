@@ -9,10 +9,10 @@ DBConnects::~DBConnects() { drop(); }
 
 const bool DBConnects::create() {
   _db.setHostName(_dbUserData.get()->hostAddress());
-  _db.setPort(_dbUserData.get()->port());
+  _db.setPort(_dbUserData.get()->hostPort());
   _db.setDatabaseName(_dbUserData.get()->databaseName());
   _db.setUserName(_dbUserData.get()->userName());
-  _db.setPassword(_dbUserData.get()->password());
+  _db.setPassword(_dbUserData.get()->userPassword());
 
   if (!_db.open()) {
     _lastError = _db.lastError().text();

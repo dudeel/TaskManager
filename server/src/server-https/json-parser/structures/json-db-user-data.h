@@ -1,8 +1,21 @@
 #pragma once
 
-namespace parser ::structures {
-class JsonDBUserData {
+#include <QJsonObject>
+
+namespace json::structures {
+class JsonDBUserData final {
 public:
-  JsonDBUserData();
+  explicit JsonDBUserData(const QJsonObject *parseData);
+  ~JsonDBUserData() = default;
+
+public:
+  const QString hostAddress() const noexcept;
+  const int hostPort() const noexcept;
+  const QString databaseName() const noexcept;
+  const QString userName() const noexcept;
+  const QString userPassword() const noexcept;
+
+private:
+  const QJsonObject *_parseData;
 };
-} // namespace parser::structures
+} // namespace json::structures

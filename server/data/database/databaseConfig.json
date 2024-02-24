@@ -1,7 +1,7 @@
 {
-  "hostName":"127.0.0.1",
-  "port":5432,
+  "hostAddress":"127.0.0.1",
+  "hostPort":5432,
   "databaseName":"taskManager",
-  "userName":"manager",
-  "password":"password"
+  "userName":"root",
+  "userPassword":"1"
 }

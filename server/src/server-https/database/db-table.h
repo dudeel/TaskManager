@@ -15,7 +15,7 @@ public:
    * @param dbConnects Указатель на объект DBConnects,
    * в котором хранится объект базы данных.
    */
-  DBTable(const std::shared_ptr<DBConnects> dbConnects);
+  explicit DBTable(const std::shared_ptr<DBConnects> dbConnects);
   ~DBTable() = default;
 
   DBTable(const DBTable &other) = delete;
@@ -61,7 +61,7 @@ public:
    * @return Ссылка на строку с сообщением об ошибке взаимодействия,
    * с таблицей.
    */
-  inline const QString &lastError() const noexcept override;
+  const QString &lastError() const noexcept override;
 
   /**
    * @brief Удаляет таблицу в базе данных.

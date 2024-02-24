@@ -2,14 +2,14 @@
 
 #include <QJsonObject>
 
-namespace parser {
+namespace json {
 class JsonParser final {
 public:
   /**
    * @brief Конструктор класса JsonParser.
    * @param filePath Ссылка на строку с расположением json файла.
    */
-  JsonParser(const QString &filePath = "../data/database/databaseConfig.json");
+  explicit JsonParser(const QString &filePath);
   ~JsonParser() = default;
 
   JsonParser(const JsonParser &other) = delete;
@@ -35,13 +35,13 @@ public:
    * @brief Возвращает сообщение об ошибке при прочтении json, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке.
    */
-  inline const QString &lastError() const noexcept;
+  const QString &lastError() const noexcept;
 
   /**
    * @brief Возвращает данные полученные из json, если они есть.
    * @return Ссылка на QJsonobject с данными.
    */
-  inline const QJsonObject &data() const noexcept;
+  const QJsonObject &data() const noexcept;
 
 private:
   QString _filePath;
@@ -49,4 +49,4 @@ private:
   bool _isRead;
   QString _lastError;
 };
-} // namespace parser
+} // namespace json

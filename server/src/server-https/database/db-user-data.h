@@ -13,10 +13,7 @@ public:
    * @param userName Имя пользователя.
    * @param password Пароль пользователя.
    */
-  DBUserData(const QString &hostAddress = "127.0.0.1", const int port = 5432,
-             const QString &databaseName = "taskManager",
-             const QString &userName = "host",
-             const QString &password = "hostPassword");
+  explicit DBUserData();
   ~DBUserData() = default;
 
   DBUserData(const DBUserData &other) = delete;
@@ -30,31 +27,31 @@ public:
    * @brief Устанавливает адрес хоста.
    * @param hostAddress Новый адрес хоста.
    */
-  inline void setHostAddress(const QString &hostAddress);
+  void setHostAddress(const QString &hostAddress);
 
   /**
    * @brief Устанавливает порт хоста.
-   * @param port Новый порт хоста.
+   * @param hostPort Новый порт хоста.
    */
-  inline void setPort(const int &port);
+  void setHostPort(const int &hostPort);
 
   /**
    * @brief Устанавливает имя базы данных.
    * @param databaseName Новое имя базы данных.
    */
-  inline void setDatabaseName(const QString &databaseName);
+  void setDatabaseName(const QString &databaseName);
 
   /**
    * @brief Устанавливает имя пользователя.
    * @param hostAddress Новое имя пользователя.
    */
-  inline void setUserName(const QString &userName);
+  void setUserName(const QString &userName);
 
   /**
    * @brief Устанавливает пароль пользователя.
    * @param hostAddress Новый пароль пользователя.
    */
-  inline void setPassword(const QString &password);
+  void setUserPassword(const QString &userPassword);
 
   /**
    * @brief Возвращает адрес хоста.
@@ -66,7 +63,7 @@ public:
    * @brief Возвращает порт хоста.
    * @return Порт хоста.
    */
-  const int port() const noexcept;
+  const int hostPort() const noexcept;
 
   /**
    * @brief Возвращает имя базы данных.
@@ -84,13 +81,13 @@ public:
    * @brief Возвращает пароль пользователя.
    * @return Ссылка на строку с паролем пользователя.
    */
-  const QString &password() const noexcept;
+  const QString &userPassword() const noexcept;
 
 private:
   QString _hostAddress;
-  int _port;
+  int _hostPort;
   QString _databaseName;
   QString _userName;
-  QString _password;
+  QString _userPassword;
 };
 } // namespace database

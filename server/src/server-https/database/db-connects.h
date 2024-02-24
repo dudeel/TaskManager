@@ -16,7 +16,7 @@ public:
    * @param dbUserData Указатель на объект DBUserData,
    * в котором данные для подключении к базе данных.
    */
-  DBConnects(const std::shared_ptr<DBUserData> dbUserData);
+  explicit DBConnects(const std::shared_ptr<DBUserData> dbUserData);
   ~DBConnects();
 
   DBConnects(const DBConnects &other) = delete;
@@ -42,7 +42,7 @@ public:
    * @brief Возвращает сообщение об ошибке соединения, если оно есть.
    * @return Ссылка на строку с сообщением об ошибке соединения.
    */
-  inline const QString &lastError() const noexcept override;
+  const QString &lastError() const noexcept override;
 
   /**
    * @brief Закрывает соединение с базой данных.

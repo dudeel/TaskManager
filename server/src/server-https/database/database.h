@@ -20,6 +20,9 @@ public:
   Database &operator=(Database &&other) noexcept = delete;
 
 private:
+  void initializationData();
+
+private:
   std::shared_ptr<DBUserData> _dbUserData;
   std::shared_ptr<DBConnects> _dbConnects;
   std::unique_ptr<DBTable> _dbTable;

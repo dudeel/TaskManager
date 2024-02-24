@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QJsonDocument>
 
-namespace parser {
+namespace json {
 JsonParser::JsonParser(const QString &filePath)
     : _filePath{filePath}, _jsonObject{}, _isRead{false}, _lastError{} {}
 
@@ -40,4 +40,4 @@ const bool JsonParser::isRead() const noexcept { return _isRead; }
 const QString &JsonParser::lastError() const noexcept { return _lastError; }
 
 const QJsonObject &JsonParser::data() const noexcept { return _jsonObject; }
-} // namespace parser
+} // namespace json
