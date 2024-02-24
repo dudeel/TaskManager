@@ -2,6 +2,6 @@
   "hostAddress":"127.0.0.1",
   "hostPort":5432,
   "databaseName":"taskManager",
-  "userName":"root",
+  "userName":"host",
   "userPassword":"1"
 }
